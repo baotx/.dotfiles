@@ -142,3 +142,55 @@ source $ZSH/oh-my-zsh.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+export PATH=$PATH:/usr/local/go/bin
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+bwo() {
+  local=$(fdfind -e code-workspace . $HOME | fzf --height 40% --reverse)
+  code $local
+}
+
+bwa() {
+  local branch_name="$1" # Branch name with person
+  branch_name="${branch_name// /-}" # Replace all spaces with dashes
+  local wi_name="${branch_name:4}" # Remove the "RT3/"
+  local project="$2"
+
+  # Save the current directory and change directory
+  pushd . > /dev/null
+
+  if [[ $project == [wW]* ]]; then
+    cd ~/WebWatcher/WebWatcher
+  elif [[ $project == [uU]* ]]; then
+    cd ~/UMP/UMP
+  else
+    cd ~/BorderWiseWeb/BorderWiseWeb
+  fi
+
+  git fetch --all
+
+  # Git operations
+  git worktree remove ${wi_name}
+  git branch -D -f ${wi_name}
+
+  # Check if the branch exists on the remote
+  if [[ -n $(git ls-remote --heads origin ${branch_name}) ]]; then
+    echo "Branch exists on remote"
+    echo "git worktree add ../${wi_name} origin/${branch_name}"
+    # If branch exists on remote, create worktree for that branch
+    git worktree add ../${wi_name} origin/${branch_name}
+  else
+    echo "Branch DOES NOT exists on remote"
+    # If branch does not exist, create a new branch and set up worktree
+    echo "git worktree add -b ${wi_name} ../${wi_name}"
+    git worktree add -b ${wi_name} ../${wi_name}
+    # Optionally, push the new branch to remote
+    echo "git -C ../${wi_name} push --set-upstream origin ${wi_name}:${branch_name}"
+  fi
+
+    git -C ../${wi_name} push --set-upstream origin ${wi_name}:${branch_name}
+
+  # Return to the original directory
+  popd > /dev/null
+}
