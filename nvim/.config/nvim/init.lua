@@ -605,5 +605,9 @@ cmp.setup {
   },
 }
 
+-- [[ Configure personal keymaps ]]
+vim.keymap.set('n', '<leader>x', ':silent !chmod +x %<cr>', { desc = 'Make current file e[x]cutable'})
+vim.keymap.set('n', '<C-f>', ':silent !tmux neww ~/tmux-sessionizer<cr>', { desc = 'Create new tmux session'})
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

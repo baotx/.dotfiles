@@ -161,7 +161,7 @@ bwa() {
   local project="$2"
 
   # Save the current directory and change directory
-  pushd . > /dev/null
+  local currentPwd="$(pwd)"
 
   if [[ $project == [wW]* ]]; then
     cd ~/WebWatcher/WebWatcher
@@ -174,26 +174,43 @@ bwa() {
   git fetch --all
 
   # Git operations
+
+  echo -e "\ngit worktree remove ${wi_name}"
   git worktree remove ${wi_name}
+  echo -e "\ngit branch -D -f ${wi_name}"
   git branch -D -f ${wi_name}
 
   # Check if the branch exists on the remote
   if [[ -n $(git ls-remote --heads origin ${branch_name}) ]]; then
-    echo "Branch exists on remote"
+    echo -e "\nBranch exists on remote"
     echo "git worktree add ../${wi_name} origin/${branch_name}"
     # If branch exists on remote, create worktree for that branch
     git worktree add ../${wi_name} origin/${branch_name}
   else
-    echo "Branch DOES NOT exists on remote"
+    echo -e "\nBranch DOES NOT exists on remote"
     # If branch does not exist, create a new branch and set up worktree
     echo "git worktree add -b ${wi_name} ../${wi_name}"
     git worktree add -b ${wi_name} ../${wi_name}
     # Optionally, push the new branch to remote
-    echo "git -C ../${wi_name} push --set-upstream origin ${wi_name}:${branch_name}"
   fi
 
-    git -C ../${wi_name} push --set-upstream origin ${wi_name}:${branch_name}
+  cd ../${wi_name}
+  
+  echo -e "\ngit pull origin ${branch_name}"
+  git pull origin ${branch_name}
+
+  if [ `git rev-parse --verify ${branch_name} 2>/dev/null` ]
+  then
+    echo -e "\ngit push --set-upstream origin ${branch_name}:${branch_name}"
+    git push --set-upstream origin ${branch_name}:${branch_name}
+  fi
+
+  if [ `git rev-parse --verify ${wi_name} 2>/dev/null` ]
+  then
+    echo -e "\ngit push --set-upstream origin ${wi_name}:${branch_name}"
+    git push --set-upstream origin ${wi_name}:${branch_name}
+  fi
 
   # Return to the original directory
-  popd > /dev/null
+  cd ${currentPwd}
 }
