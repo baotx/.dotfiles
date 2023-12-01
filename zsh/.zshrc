@@ -214,3 +214,7 @@ bwa() {
   # Return to the original directory
   cd ${currentPwd}
 }
+
+bindkey -s ^f "tmux-sessionizer\n"
+
+export PATH=$HOME/.local/scripts:$PATH

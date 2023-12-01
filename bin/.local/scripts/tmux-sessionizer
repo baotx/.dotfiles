@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+session=$(find ~ ~/BorderWiseWeb ~/WebWatcher ~/UMP ~/personal -mindepth 1 -maxdepth 1 -type d | fzf)
+session_name=$(basename "$session" | tr . _ | head -c9)
+
+if ! tmux has-session -t "$session_name" 2> /dev/null; then
+    TMUX='' tmux new-session -s "$session_name" -c "$session" -d
+fi
+
+if [[ -n $TMUX ]] ; then
+    tmux switch-client -t "$session_name"
+    exit 0
+fi
+
+tmux attach -t "$session_name"
