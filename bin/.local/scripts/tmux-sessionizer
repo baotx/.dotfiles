@@ -9,7 +9,7 @@ for dir in "${directories[@]}"; do
     fi
 done
 
-session=$(find $existing_directories -mindepth 1 -maxdepth 1 -type d | fzf)
+session=$(find ~ $existing_directories -mindepth 1 -maxdepth 1 -type d | fzf)
 session_name=$(basename "$session" | tr . _ | head -c9)
 
 if ! tmux has-session -t "$session_name" 2> /dev/null; then
