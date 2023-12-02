@@ -1,0 +1,7 @@
+- hosts: localhost
+  become: true
+  tasks:
+    - name: Install zsh
+      apt: name=zsh
+    - name: Change shell
+      shell: chsh -s `which zsh`
