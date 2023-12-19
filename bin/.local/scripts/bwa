@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
-local branch_name="$1" # Branch name with person
+
+branch_name="$1" # Branch name with person
 branch_name="${branch_name// /-}" # Replace all spaces with dashes
-local wi_name="${branch_name:4}" # Remove the "RT3/"
-local project="$2"
+wi_name="${branch_name:4}" # Remove the "RT3/"
+project="$2"
 
 # Save the current directory and change directory
-local currentPwd="$(pwd)"
+currentPwd="$(pwd)"
 
 if [[ $project == [wW]* ]]; then
   cd ~/WebWatcher/WebWatcher
