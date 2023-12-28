@@ -17,6 +17,7 @@ else
 fi
 
 git fetch --all
+git pull
 
 # Git operations
 
