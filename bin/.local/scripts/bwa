@@ -3,6 +3,7 @@
 branch_name="$1" # Branch name with person
 branch_name="${branch_name// /-}" # Replace all spaces with dashes
 wi_name="${branch_name:4}" # Remove the "RT3/"
+wi_number="${wi_name:0:10}"
 project="$2"
 
 # Save the current directory and change directory
@@ -56,6 +57,18 @@ then
   echo -e "\ngit push --set-upstream origin ${wi_name}:${branch_name}"
   git push --set-upstream origin ${wi_name}:${branch_name}
 fi
+
+# run npm ci
+if [[ $project == [wW]* ]]; then
+  cd ~/WebWatcher/${wi_name}/Frontend
+elif [[ $project == [uU]* ]]; then
+  cd ~/UMP/${wi_name}/Frontend
+else
+  cd ~/BorderWiseWeb/${wi_name}/Frontend/src
+fi
+echo -e "\nCurrent in dir: $(pwd)"
+echo -e "\nRunning: tmux new-session -d -s '${wi_number}' 'source ~/.zshrc; nvm use; npm i;'"
+tmux new-session -d -s "${wi_number}" "source ~/.zshrc; nvm use; npm i;"
 
 # Return to the original directory
 cd ${currentPwd}
