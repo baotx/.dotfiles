@@ -218,3 +218,11 @@ bwa() {
 bindkey -s ^f "tmux-sessionizer\n"
 
 export PATH=$HOME/.local/scripts:$PATH
+
+check_and_open_ngrok() {
+  tmux has-session -t "ngrok" 2>/dev/null
+  if [ $? != 0 ]; then
+    tmux new-session -d -s "ngrok" "~/ngrok tcp 22"
+  fi
+}
+check_and_open_ngrok

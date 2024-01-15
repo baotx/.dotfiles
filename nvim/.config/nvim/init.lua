@@ -236,6 +236,9 @@ require('lazy').setup({
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
 
+-- Set column limit to 80 characters
+vim.o.colorcolumn = 80
+
 -- Set tab to 4 spaces
 vim.o.tabstop = 4
 vim.o.expandtab = true
