@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+local=$(fdfind -e code-workspace . $HOME | fzf --height 40% --reverse)
+[ -n "$local" ] && code "$local"
