@@ -165,3 +165,5 @@ check_and_open_ngrok() {
   fi
 }
 check_and_open_ngrok
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
