@@ -146,7 +146,6 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-export PATH=$PATH:/usr/local/go/bin
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 #bwo() {
@@ -156,7 +155,11 @@ export PATH=$PATH:/usr/local/go/bin
 
 bindkey -s ^f "tmux-sessionizer\n"
 
-export PATH=$HOME/.local/scripts:$PATH
+export PATH=$PATH:$HOME/.local/scripts
+export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$PATH:$(go env GOPATH)/bin
 
 check_and_open_ngrok() {
   tmux has-session -t "ngrok" 2>/dev/null
