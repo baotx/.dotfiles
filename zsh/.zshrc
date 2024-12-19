@@ -160,6 +160,7 @@ export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$PATH:$(go env GOPATH)/bin
+export PATH="/opt/homebrew/bin:$PATH"
 
 check_and_open_ngrok() {
   tmux has-session -t "ngrok" 2>/dev/null
@@ -168,5 +169,3 @@ check_and_open_ngrok() {
   fi
 }
 check_and_open_ngrok
-
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
