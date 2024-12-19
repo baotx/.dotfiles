@@ -156,4 +156,36 @@ export PATH=$PATH:/usr/local/go/bin
 
 bindkey -s ^f "tmux-sessionizer\n"
 
-export PATH=$HOME/.local/scripts:$PATH
+export PATH=$PATH:$HOME/.local/scripts
+export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$PATH:$(go env GOPATH)/bin
+export PATH="/opt/homebrew/bin:$PATH"
+
+check_and_open_ngrok() {
+  tmux has-session -t "ngrok" 2>/dev/null
+  if [ $? != 0 ]; then
+    tmux new-session -d -s "ngrok" "~/ngrok tcp 22"
+  fi
+}
+check_and_open_ngrok
+# pnpm
+export PNPM_HOME="/home/baotong/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+alias air='$(go env GOPATH)/bin/air'
+
+export BW_PRE_COMMIT_CSPELL=false
+export BW_PRE_COMMIT_PRETTIER=false
+export BW_PRE_COMMIT_LINT=false
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - bash)"
