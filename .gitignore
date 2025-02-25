@@ -1,0 +1,4 @@
+bin/.local/share/*
+bin/.local/state/*
+nvim/.config/go/*
+nvim/.config/nvim/lazy-lock.json
