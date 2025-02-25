@@ -13,6 +13,8 @@ if [[ $project == [wW]* ]]; then
   cd ~/WebWatcher/WebWatcher
 elif [[ $project == [uU]* ]]; then
   cd ~/UMP/UMP
+elif [[ $project == [cC]* ]]; then
+  cd ~/BorderWise.ClassificationAssistant/BorderWise.ClassificationAssistant
 else
   cd ~/BorderWiseWeb/BorderWiseWeb
 fi
@@ -63,6 +65,8 @@ if [[ $project == [wW]* ]]; then
   cd ~/WebWatcher/${wi_name}/Frontend
 elif [[ $project == [uU]* ]]; then
   cd ~/UMP/${wi_name}/Frontend
+elif [[ $project == [cC]* ]]; then
+  cd ~/BorderWise.ClassificationAssistant/${wi_name}/frontend
 else
   cd ~/BorderWiseWeb/${wi_name}/Frontend/src
 fi
