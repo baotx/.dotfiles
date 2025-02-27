@@ -16,7 +16,7 @@ elif [[ $project == [uU]* ]]; then
 elif [[ $project == [cC]* ]]; then
   cd ~/BorderWise.ClassificationAssistant/BorderWise.ClassificationAssistant
 else
-  cd ~/BorderWiseWeb/BorderWiseWeb
+  cd ~/BorderWise/BorderWise
 fi
 
 git fetch --all
@@ -68,7 +68,7 @@ elif [[ $project == [uU]* ]]; then
 elif [[ $project == [cC]* ]]; then
   cd ~/BorderWise.ClassificationAssistant/${wi_name}/frontend
 else
-  cd ~/BorderWiseWeb/${wi_name}/Frontend/src
+  cd ~/BorderWise/${wi_name}/Frontend/src
 fi
 echo -e "\nCurrent in dir: $(pwd)"
 echo -e "\nRunning: tmux new-session -d -s '${wi_number}' 'source ~/.zshrc; nvm use; npm i;'"
