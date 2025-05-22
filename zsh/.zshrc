@@ -1,8 +1,3 @@
-# Enable Powerlevel10k instant prompt.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # Set environment variables
 export ZSH="$HOME/.oh-my-zsh"
 export TERM=xterm-256color
@@ -40,6 +35,12 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
+# Enable Powerlevel10k instant prompt.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+
 # Set ZSH theme
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
@@ -60,6 +61,8 @@ alias air='$(go env GOPATH)/bin/air'
 export PATH="$PATH:$HOME/.local/scripts:$HOME/.local/bin:/usr/local/go/bin"
 export PATH="$HOME/bin:/usr/local/bin:$PATH"
 export PATH="$PATH:$(go env GOPATH)/bin:/opt/homebrew/bin"
+# Add fzf, rg (ripgrep), and bat to PATH
+export PATH="$PATH:$HOME/.fzf/bin:/usr/bin"
 
 # Ensure pnpm is in PATH
 case ":$PATH:" in
