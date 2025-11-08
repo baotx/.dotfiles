@@ -168,4 +168,4 @@ check_and_open_ngrok() {
     tmux new-session -d -s "ngrok" "~/ngrok tcp 22"
   fi
 }
-check_and_open_ngrok
+# check_and_open_ngrokexport PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
