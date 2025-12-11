@@ -51,8 +51,6 @@ source $ZSH/oh-my-zsh.sh
 # Load additional tools
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - bash)"
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # Aliases
 alias air='$(go env GOPATH)/bin/air'
@@ -76,7 +74,7 @@ check_and_open_ngrok() {
     tmux new-session -d -s "ngrok" "~/ngrok tcp 22"
   fi
 }
-check_and_open_ngrok
+# check_and_open_ngrok
 
 # Key bindings
 bindkey -s ^f "tmux-sessionizer\n"
