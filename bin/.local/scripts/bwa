@@ -12,7 +12,7 @@ if [[ $project == [wW]* ]]; then
 elif [[ $project == [uU]* ]]; then
   cd ~/UMP/UMP
 elif [[ $project == [cC]* ]]; then
-  cd ~/BorderWise.ClassificationAssistant/BorderWise.ClassificationAssistant
+  cd ~/ClassificationAssistant/ClassificationAssistant
 else
   cd ~/BorderWise/BorderWise
 fi
@@ -59,7 +59,7 @@ if [[ $project == [wW]* ]]; then
 elif [[ $project == [uU]* ]]; then
   cd ~/UMP/${wi_name}/Frontend
 elif [[ $project == [cC]* ]]; then
-  cd ~/BorderWise.ClassificationAssistant/${wi_name}/frontend
+  cd ~/ClassificationAssistant/ClassificationAssistant/${wi_name}/frontend
 else
   cd ~/BorderWise/${wi_name}/Frontend/src
 fi
