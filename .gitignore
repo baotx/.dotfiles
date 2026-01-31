@@ -5,3 +5,6 @@ nvim/.config/nvim/lazy-lock.json
 nvim/.config/iterm2/*
 nvim/.config/medusa/*
 nvim/.config/raycast/*
+
+nvim/.config/gcloud
+nvim/.config/qBittorrent
